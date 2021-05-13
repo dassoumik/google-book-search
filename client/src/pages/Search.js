@@ -1,35 +1,40 @@
-import React, {useRef} from 'react'
-import logo from '../logo.svg';
-import Books from '../components/Books'
+import React from 'react';
+import {Col} from 'react-bootstrap';
+import Nav from "../components/Nav";
+import API from "../utils/API";
 
-function Search() {
-    const searchTerm = useRef();
-    const handleSubmit = (e) => {
-       e.preventDefault(); 
-       const bookName = encodeURIComponent(searchTerm.current.value);
-       console.log(bookName);
 
-    }
+function Search(req, res) {
+    let searchTerm = req.params.id;
+  let bookData = [];
+
+    const bookList = API.getBooks(searchTerm)
+    async function extractData() {
+    bookData =   await bookList.then(res => res.data.items) 
+    // setBooks(bookData);
+    // setPage("search");
+    console.log(bookData);
+   }
+   extractData(); 
+ 
+   
+ 
+
     return (
         <div>
-            <div className={"App-header"}>
-        <img src={logo} className={"App-logo"} alt={"logo"} />
-        <h2>Welcome to Book Search</h2>
+            {/* {bookData.map(item => {
+              console.log(item.volumeInfo, item.searchInfo);
+            return (<div className="container-fluid">
+                <div className="d-flex row">
+                    <img src={item.volumeInfo.imageLinks.smallThumbnail} alt="volume-image"/>
+                </div>
+                <div className="d-flex row">
+                    <Col>{item.volumeInfo.readingModes.title}</Col>
+                </div>
+            </div>)
+            })} */}
+            <Nav type="search" bookData={bookData}/>
         </div>
-            <form className={"form-inline"}>
-                
-  <div className={"form-group mx-sm-3 mb-2"}>
-    <label  className={"sr-only mt-3"}>Search Book</label>
-    <input type={"text"} className={"form-control mt-2 mb-3"} id={"search-input"} placeholder={"Search Books..."} ref={searchTerm}/>
-  </div>
-  <button type={"submit"} className={"btn btn-primary mb-2"} onClick={handleSubmit}>Submit</button>
-</form>
-            
-        <div>
-            <Books/>
-        </div>
-        </div>
-
     )
 }
 
