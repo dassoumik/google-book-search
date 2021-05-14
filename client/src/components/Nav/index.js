@@ -5,8 +5,7 @@ import API from "../../utils/API";
 import Search from "../../pages/Search";
 import {Redirect, useHistory, Switch, BrowserRouter as Router, Route} from "react-router-dom";
 import BookDataContext from "../../utils/BookDataContext";
-import {Col} from 'react-bootstrap';
-
+import {Col, InputGroup, FormControl, Button} from 'react-bootstrap';
 
 // export default BookDataContext = createContext();
 
@@ -70,17 +69,28 @@ function Nav() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="d-flex flex-row navbar-nav">
       <a className="navbar-brand" href="/">
-      <span ><FcGoogle style={{marginLeft: "30px", marginRight: "5px"}}/></span>
+      <span ><FcGoogle style={{marginLeft: "30px", marginRight: "5px", marginBottom: "3px"}}/></span>
       <span> Book Search </span> 
       </a>
       </div>
       <div className="ml-5 d-flex flex-row mr-5 navbar-nav ">
       <div className="input-group">
+      <InputGroup className="mt-3 mb-3">
+    <FormControl
+      placeholder="Search..."
+      aria-label="Search"
+      aria-describedby="basic-addon2"
+    />
+    <InputGroup.Append>
+      <Button variant="outline-info" href="/search"><FcSearch/></Button>
+    </InputGroup.Append>
+  </InputGroup> 
+      {/* <label className="form-label" htmlFor="form1">
+      <span><a href="/search"><span><button type="submit" href="/search"><FcSearch/></button></span></a></span>
+      </label>
       <form className="form-outline pt-4" onSubmit={renderSearch}>
-      <input type="search" id="form1" className="form-control" placeholder="Search..." ref={searchTerm} />
-      {/* <label className="form-label" for="form1">Search...</label> */}
-      <a href="/search"> <button type="submit" href="/search">Search</button></a>
-      </form>
+      <input type="search" id="form1" className="form-control d-inline" placeholder="Search..." ref={searchTerm} />
+      </form> */}
       </div>
       </div>
       <div className="d-flex flex-row-reverse navbar-nav ml-auto" style={{marginLeft: "auto", marginRight:"40px"}}>
