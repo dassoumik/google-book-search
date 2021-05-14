@@ -7,14 +7,17 @@ import {Redirect, useHistory, Switch, BrowserRouter as Router, Route} from "reac
 import BookDataContext from "../../utils/BookDataContext";
 import {Col} from 'react-bootstrap';
 
+
 // export default BookDataContext = createContext();
 
-function Nav({type, bookSearchData}) {
+function Nav() {
+  const searchTerm = useRef();
+
+  let searchContext = React.createContext(searchTerm);
   const [books, setBooks] = useState();
-  const [page, setPage] = useState(type);
+  // const [page, setPage] = useState(type);
   let history = useHistory();
   // const [redirect, setRedirect] = useState(false);
-  const searchTerm = useRef();
   let bookData = [];
   const initiateSearch = (e) => {
     e.preventDefault();
@@ -23,7 +26,7 @@ function Nav({type, bookSearchData}) {
    async function extractData() {
    bookData =   await bookList.then(res => res.data.items) 
    setBooks(bookData);
-   setPage("search");
+  //  setPage("search");
    console.log(bookData);
   //  API.getSearchPage(bookData)
 
@@ -35,8 +38,14 @@ function Nav({type, bookSearchData}) {
   function renderSearch(e) {
     e.preventDefault();
     console.log(searchTerm.current.value);
-    
-    history.push(`/search/${searchTerm.current.value}`)
+    // return(
+    // <div>
+    {/* <searchContext.Provider value={searchTerm.current.value}/> */}
+     history.push(`/search/${searchTerm.current.value}`)
+    {/* <Search/> */}
+    {/* <searchContext.Provider/> */}
+    {/* </div> */}
+    {/* ) */}
      
     {/* <Router>
     <Switch>
@@ -51,8 +60,8 @@ function Nav({type, bookSearchData}) {
   
     // {redirect ? <Redirect to="/Search"/> : null}
     // <BookDataContext.provider value={bookData}>
-    {switch (type ) {
-      case "books":
+    // {switch (type ) {
+    //   case "books":
 
         return (
 
@@ -82,30 +91,29 @@ function Nav({type, bookSearchData}) {
      
        </nav>
       
-      );
-      break;
-      case ("search"):
-        return(
-          <div>
-            {bookData.map(item => {
-              console.log(item.volumeInfo, item.searchInfo);
-            return (<div className="container-fluid">
-                <div className="d-flex row">
-                    <img src={item.volumeInfo.imageLinks.smallThumbnail} alt="volume-image"/>
-                </div>
-                <div className="d-flex row">
-                    <Col>{item.volumeInfo.readingModes.title}</Col>
-                </div>
-            </div>)
-            })}
+      )
+    //   case ("search"):
+    //     return(
+    //       <div>
+    //         {bookData.map(item => {
+    //           console.log(item.volumeInfo, item.searchInfo);
+    //         return (<div className="container-fluid">
+    //             <div className="d-flex row">
+    //                 <img src={item.volumeInfo.imageLinks.smallThumbnail} alt="volume-image"/>
+    //             </div>
+    //             <div className="d-flex row">
+    //                 <Col>{item.volumeInfo.readingModes.title}</Col>
+    //             </div>
+    //         </div>)
+    //         })}
 
-        </div>
-        )
-      }
-        if (page) {
-          return (page);
-    }
-  }
+    //     </div>
+    //     )
+    //   }
+    //     if (page) {
+    //       return (page);
+    // }
+  // }
 }
 
 export default Nav ;

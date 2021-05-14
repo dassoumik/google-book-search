@@ -14,7 +14,7 @@ function Books() {
 
     return (
       <>
-      <Nav type="books"/>
+      <Nav />
       <Container fluid>
         <Row>
             {/* <Jumbotron> */}
