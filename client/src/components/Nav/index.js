@@ -9,7 +9,7 @@ import {Col, InputGroup, FormControl, Button} from 'react-bootstrap';
 
 // export default BookDataContext = createContext();
 
-function Nav() {
+function Nav(props) {
   const searchTerm = useRef();
 
   let searchContext = React.createContext(searchTerm);
@@ -60,8 +60,9 @@ function Nav() {
     // {redirect ? <Redirect to="/Search"/> : null}
     // <BookDataContext.provider value={bookData}>
     // {switch (type ) {
-    //   case "books":
-
+      // case "saved":
+          // return
+      //  default:   
         return (
 
  
@@ -75,14 +76,16 @@ function Nav() {
       </div>
       <div className="ml-5 d-flex flex-row mr-5 navbar-nav ">
       <div className="input-group">
-      <InputGroup className="mt-3 mb-3">
+      <InputGroup className="mt-3 mb-3" >
     <FormControl
       placeholder="Search..."
+      ref={searchTerm}
       aria-label="Search"
       aria-describedby="basic-addon2"
+      onSubmit={renderSearch}
     />
     <InputGroup.Append>
-      <Button variant="outline-info" href="/search"><FcSearch/></Button>
+      <Button variant="outline-info" type="submit"  onClick={renderSearch}><FcSearch/></Button>
     </InputGroup.Append>
   </InputGroup> 
       {/* <label className="form-label" htmlFor="form1">

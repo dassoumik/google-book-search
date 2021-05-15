@@ -8,7 +8,7 @@ const bookSchema = new Schema({
   buyLink: { type: String, required: false },
   author: { type: Array, required: true },
   description: {type: String, required:false},
-  retailPrice: {type: Number, required: false},
+  price: {type: Number, required: false},
   date: { type: Date, default: Date.now }
 });
 

@@ -35,6 +35,10 @@ console.log(searchTerm);
       })
 
     // <Redirect push to="/search"/>
-  }
+  },
+  // Gets the saved books with the 
+  getSavedBooks: () => {
+    return axios.get("/api/books/");
+  },
   
 };
