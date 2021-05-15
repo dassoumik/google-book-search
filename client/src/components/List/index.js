@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Col, Row} from 'react-bootstrap';
+import {Col, Row, Button} from 'react-bootstrap';
 import "./style.css";
 import {IoSaveSharp} from "react-icons/io5"
 import API from "../../utils/API";
@@ -69,7 +69,7 @@ function List({item}) {
           <div>
             Price: <small>$</small>{price}
         </div>
-        <button className="pl-5" id={id} onClick={saveBook}><IoSaveSharp className="pl-5"   /></button>
+        <Button className="btn button bg-light outline-info box-border " style={{fontWeight: "700"}} variant="outline-info" id={id} onClick={saveBook} ><IoSaveSharp className="pl-5 mr-5 ml-2" style={{color: "green"}} /> SAVE</Button>
         </Col>
         </Row>
     </div>
