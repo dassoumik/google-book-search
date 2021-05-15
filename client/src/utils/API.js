@@ -18,8 +18,10 @@ export default {
     return axios.delete("/api/books/" + id);
   },
   // Saves a book to the database
-  saveBook: function(bookData) {
-    return axios.post("/api/books", bookData);
+  saveBook: async function(bookData) {
+    console.log(bookData);
+    let res = await axios.post("/api/books", bookData);
+    console.log(res);
   },
   getSearchPage: (searchTerm) => {
     // return axios.get("/search");
