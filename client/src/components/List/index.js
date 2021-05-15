@@ -37,19 +37,7 @@ function List({item}) {
       if (book.id === e.target.id) bookSaveData = book;
     })
     API.saveBook(bookSaveData)
-      .then(res => res === 200 ? ReactNotification.addNotification({
-        title: "Success!",
-        message: "New Book added to your list",
-        type: "success",
-        insert: "bottom",
-        container: "bottom-right",
-        animationIn: ["animate__animated", "animate__fadeIn"],
-        animationOut: ["animate__animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 5000,
-          onScreen: true
-        }
-      }) : null);
+      .then(res => res === 200 ? showNotification() : null);
   }
 
   const showNotification = () => {
