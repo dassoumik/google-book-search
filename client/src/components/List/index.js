@@ -55,7 +55,7 @@ function List({item}) {
         <Col className="mt-1">
           <dl>
           <dt><a href={buyLink}>{title}</a></dt>
-          <dd>{author} </dd>
+          <dd>{author.join("")} </dd>
           <dd>{description}</dd>
           </dl>
         </Col>
