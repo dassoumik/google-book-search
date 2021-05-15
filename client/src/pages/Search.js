@@ -1,5 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {Col} from 'react-bootstrap';
+import React, {useEffect, useState} from 'react';
 import Nav from "../components/Nav";
 import API from "../utils/API";
 import List from "../components/List"
@@ -21,23 +20,20 @@ const [listData, setListData] = useState();
 const data = extractData(); 
 return data;
   
-   }
-   console.log(initiateSearch);
-
+}
 
 useEffect(() => {
-    console.log(id);
    initiateSearch(id);
- }, [])
+ }, [id])
 
     return (
         <div>
-            <Nav/>
-            <div>
+          <Nav/>
+          <div>
             {listData?.length ?     
             listData.map(item => 
                <List item={item} key={item.id}/>
-            )
+          )
         : <div>No Data to display</div>}
         </div>
         </div>

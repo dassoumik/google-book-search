@@ -1,29 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
-import API from "../utils/API";
 
 function Detail(props) {
   console.log(props);
   const [book, setBook] = useState({});
-  const [id] = useState(props.match.params.id);
-
-  // When this component mounts, grab the book with the _id of props.match.params.id
-  // e.g. localhost:3000/books/599dcb67f0f16317844583fc
-  // function loadBook() {
-    // useEffect(() => {
-      // async function fetchData() {
-    //  const res = await  API.getBook(id)
-      // API.getBooks()
-        // .then(res => setBook(res.data ))
-        // .catch(err => console.log(err));
-    // }
-    // return () => {
-    //   API.getBook(id)
-    // }
-      // }
-    // }, []);
+  // const [id] = useState(props.match.params.id);
 
   return (
       <Container fluid>

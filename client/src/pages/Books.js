@@ -1,26 +1,16 @@
-import React, { useState, useEffect } from "react";
-import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
-import API from "../utils/API";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import React from "react";
+import { Row, Container } from "../components/Grid";
 import "../assets/images/bookshelf.jpg";
 import Nav from "../components/Nav"
 
 function Books() {
-
 
     return (
       <>
       <Nav />
       <Container fluid>
         <Row>
-            {/* <Jumbotron> */}
-              {/* <h1>What Books Should I Read?</h1> */}
-              <img src="../assets/images/bookshelf.jpg" height="50px" alt="bookshelf" style={{width: "100%", height: "10%"}}/>
-            {/* </Jumbotron> */}
+          <img src="../assets/images/bookshelf.jpg" height="50px" alt="bookshelf" style={{width: "100%", height: "10%"}}/>
         </Row>
         <Row>
         </Row>

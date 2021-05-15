@@ -1,7 +1,4 @@
 import axios from "axios";
-import React from "react";
-import {Redirect} from "react-router-dom";
-import Search from "../pages/Search";
 
 export default {
   // Gets all books
@@ -21,19 +18,14 @@ export default {
   saveBook: async function(bookData) {
     console.log(bookData);
     let res = await axios.post("/api/books", bookData);
-    console.log(res);
+    return res.status;
   },
   getSearchPage: (searchTerm) => {
-    // return axios.get("/search");
-    // render()
-//  return <Search bookData={bookData}/> 
-console.log(searchTerm);
- axios.get("/search/" + searchTerm)
+    axios.get("/search/" + searchTerm)
       .then(response => {
         console.log(response.data);
         return(response.data);
       })
-
     // <Redirect push to="/search"/>
   },
   // Gets the saved books with the 

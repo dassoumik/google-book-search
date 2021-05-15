@@ -25,7 +25,7 @@ module.exports = {
     console.log(req.body)
     Books
       .create(req.body)
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => res.status(200).json(dbModel))
       .catch(err => {        
         console.error(err)
         res.status(422).json(err)});

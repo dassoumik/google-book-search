@@ -1,0 +1,11 @@
+.notify-section {
+    background-color: #444;
+    color: white;
+    height: 6rem;
+    width: 20rem;
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    padding: 16px;
+    transition: bottom 0.5s ease;
+}

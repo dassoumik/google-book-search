@@ -1,19 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import {Col, Row} from 'react-bootstrap';
 import "./style.css";
 import {IoSaveSharp} from "react-icons/io5"
 import API from "../../utils/API";
+import Notification from "../Notification";
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
+import 'animate.css/animate.min.css';
 
 // This file exports both the List and ListItem components
 
 function List({item}) {
-  console.log("in List", item.volumeInfo?.title);
-  console.log(typeof(item));
+  const [notifyFlag, setNotifyFlag] = useState(false);
   let bookData = {id:"",title:"",image: "",author:[],description:"",buyLink:"",price:"",};
-  let bookArray = new Array;
-  // let image;
-  // let title, buyLink, retailPrice, description;
-  // let authors = []; 
+  let bookArray = new Array();
   if (typeof(item) === "string") {
   const element = JSON.parse(JSON.stringify(item));
    bookData.image = element.volumeInfo.imageLinks.smallThumbnail;
@@ -26,31 +26,44 @@ function List({item}) {
      bookData.description= item.volumeInfo?.description;
      bookData.author.push( item.volumeInfo?.authors);
      bookData.id = item.id;
-     console.log(item.id);
      bookArray.push(bookData);
 
   }
   let {image, title, buyLink, price, description, author, id} = bookData;
   const saveBook = (e) => {
     e.preventDefault();
-    console.log(e.target.id);
     let bookSaveData ;
     bookArray.forEach(book => {
       if (book.id === e.target.id) bookSaveData = book;
     })
-    console.log(bookSaveData);
-    API.saveBook(bookSaveData);
+    API.saveBook(bookSaveData)
+      .then(res => res === 200 ? ReactNotification.addNotification({
+        title: "Success!",
+        message: "New Book added to your list",
+        type: "success",
+        insert: "bottom",
+        container: "bottom-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 5000,
+          onScreen: true
+        }
+      }) : null);
   }
 
-  // document.addEventListener("click", saveBook);
+  const showNotification = () => {
+    setNotifyFlag(true);
+    setTimeout(function() {
+      setNotifyFlag(false);
+    }, 3000);
+  }
 
   return (
     <div className="container-fluid">
     <div className="d-flex row m-5 border border-dark roundedlg">
       <Row>
         <Col className="mt-5 pl-5"><img src={image} height="200" width="200" alt="volume"/></Col>
-    {/* </div> */}
-    {/* <div className="d-flex row"> */}
         <Col className="mt-1">
           <dl>
           <dt><a href={buyLink}>{title}</a></dt>
@@ -72,12 +85,10 @@ function List({item}) {
         </Col>
         </Row>
     </div>
+    {notifyFlag ? <Notification />: null}
 </div>
   );
 }
 
 export default List;
 
-// export function ListItem({ children }) {
-//   return <li className="list-group-item">{children}</li>;
-// }
