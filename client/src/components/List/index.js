@@ -69,7 +69,7 @@ function List({item}) {
           <div>
             Price: <small>$</small>{price}
         </div>
-        <Button className="btn button bg-light outline-info box-border " style={{fontWeight: "700"}} variant="outline-info" id={id} onClick={saveBook} ><IoSaveSharp className="pl-5 mr-5 ml-2" style={{color: "green"}} /> SAVE</Button>
+        <Button className="btn button bg-light outline-info box-border " style={{fontWeight: "700"}} variant="outline-info" id={id} onClick={saveBook} ><IoSaveSharp className="pl-5 mr-5 ml-2" role="button" tabIndex="0"style={{color: "green"}} /> SAVE</Button>
         </Col>
         </Row>
     </div>
