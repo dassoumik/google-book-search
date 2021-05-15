@@ -32,7 +32,7 @@ function Nav(props) {
       onSubmit={renderSearch}
     />
     <InputGroup.Append>
-      <Button variant="outline-info" type="submit"  onClick={renderSearch}><FcSearch/></Button>
+      <Button variant="outline-info" type="submit"  onClick={renderSearch}><FcSearch className="mb-1"/></Button>
     </InputGroup.Append>
     </InputGroup> 
       </div>
